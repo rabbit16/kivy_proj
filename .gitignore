@@ -1,0 +1,13 @@
+/.idea
+/docs
+.buildozer
+/camerax_provider-main.zip
+/camerax_provider
+/kivy-deps-build
+/study_test
+/study_img
+kivy-readthedocs-io-en-latest.pdf
+camerax_provider-main.zip
+docker_build.md
+/bin
+/logs

@@ -1,0 +1,103 @@
+<LoginWidget>:
+    anim_type: 'slide_above_simple'
+    on_right_to_left_line: root.back_to_index()
+    BoxLayout:
+    BoxLayout:
+        id: main_box
+        size_hint: 1, 1
+        orientation: "vertical"  # 在这里设置 orientation
+        canvas.before:
+            Color:
+                rgba: (1,1,1,1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+                source: 'static/proj_img/login_bac.jpg'
+        FloatLayout:
+            id: top_box
+            size_hint: 1, .2
+            padding: 15, 15, 10, 5
+            spacing: 10
+            Label:
+                size_hint: None, None  # 使得标签可以自由设定大小
+                size: self.texture_size  # 标签大小等于内部文字的大小
+                padding: self.x+root.width*0.05, 15  # 留下10dp的空边
+                pos_hint: {"x": 0, "y": 0}  # 在左侧和底部
+                text: "Login"
+                font_size: 60
+                color: 'black'
+        MDBoxLayout:
+            id: login_box
+            orientation: "vertical"  # 在这里设置 orientation
+            size_hint: .65, .35
+            padding: self.x+root.width*0.025+60, 80, 10, 40
+            spacing: 30
+            canvas.before:
+                Color:
+                    rgba: (1,1,1,1)
+                BoxShadow:
+                    pos: self.x+root.width*0.025, self.y
+#                    border_radius: [7,]
+                    offset: 0, -10
+                    size: self.size
+                    spread_radius: -20, -20
+#                    border_radius: 10, 10, 10, 10
+                    blur_radius: 25
+                    inset: True
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.x+root.width*0.025, self.y
+                    radius: [7,]
+            Label:
+                size_hint: None, None  # 不依赖父级布局
+                text: "Username"
+                color: 'gray'
+            CustomTextInput:
+                id: username
+                size_hint: None, None  # 不依赖父级布局
+                size: .95*root.width, 60  # 设置具体尺寸
+                hint_text: 'Enter username'
+                multiline: False
+            Label:
+                size_hint: None, None  # 不依赖父级布局
+                text: "password"
+                color: 'gray'
+            CustomTextInput:
+                id: pwd
+                size_hint: None, None  # 不依赖父级布局
+                size: .95*root.width, 60  # 设置具体尺寸
+                hint_text: 'Enter password'
+                multiline: False
+                password: True
+            Label:
+            Label:
+        BoxLayout:
+            id: login_box
+            orientation: "vertical"  # 在这里设置 orientation
+            size_hint: 1, .3
+            padding: self.x+root.width*0.025+0.025*login_box.width, 5, 10, self.height-125
+            MDButton:
+                style: "text"
+                theme_width: "Custom"
+                height: "80dp"
+                size_hint_x: .9
+                theme_bg_color: "Custom"
+                theme_width: "Custom"
+                md_bg_color: (135/255., 206/255., 235/255., 1)
+                line_color: (135/255., 206/255., 235/255., 1)
+
+                shadow_radius: (1, 1, 1, 1)
+                on_release: root.login(username.text, pwd.text)
+                MDButtonText:
+                    text: "login"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    theme_text_color: "Custom"
+                    text_color: "white"
+                    theme_font_size: "Custom"
+                    font_size: "48sp"
+                    theme_font_name: "Custom"
+#                    font_name: "path/to/font.ttf"
+#            Button:
+#                size_hint: None, None  # 不依赖父级布局
+#                text: "Login"
+#                size: .9*login_box.width, 60
