@@ -42,7 +42,7 @@ requirements = kivy,numpy,opencv,pillow,requests,pyOpenSSL,conan,camera4kivy,ges
     materialyoucolor,
     exceptiongroup,
     asyncgui,
-    asynckivy,watchdog
+    asynckivy,watchdog,https://github.com/kivy-garden/graph/archive/master.zip,kivy-garden.matplotlib
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes

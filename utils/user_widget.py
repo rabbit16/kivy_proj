@@ -1,9 +1,14 @@
 from kivy.app import App
 from kivy.graphics import Color, Rectangle
+from kivy.metrics import dp
+from kivy.properties import StringProperty, NumericProperty
 from kivy.uix.label import Label
 from kivy.uix.popup import Popup
 from kivy.clock import Clock
 from kivy.uix.boxlayout import BoxLayout
+from kivymd.uix.fitimage import FitImage
+from kivymd.uix.navigationbar import MDNavigationItem, MDNavigationItemIcon, MDNavigationItemLabel
+from kivymd.uix.screen import MDScreen
 
 
 class MyPopup(Popup):
@@ -24,4 +29,19 @@ class MyPopup(Popup):
         super(MyPopup, self).open(*args, **kwargs)
         Clock.schedule_once(self.dismiss, 1.5)  # 3 seconds auto dismiss
 
+class BaseMDNavigationItem(MDNavigationItem):
+    icon = StringProperty()
+    text = StringProperty()
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.add_widget(MDNavigationItemIcon(icon=self.icon))
+        self.add_widget(MDNavigationItemLabel(text=self.text))
+
+class BaseScreen(MDScreen):
+    image_size = StringProperty()
+    dragging = True
+    start_size = NumericProperty(0)
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)

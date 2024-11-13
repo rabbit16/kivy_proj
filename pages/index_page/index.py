@@ -153,6 +153,8 @@ class ImageWeiXin(ButtonBehavior, Image):
         super().__init__(**kwargs)
         self.press_count = 0
     def on_press(self):
+        print(MDApp.get_running_app().root.is_login)
+        print(MDApp.get_running_app().root.login_user)
         if self.press_count > 3:
             self.root_obj.toggle_state()
             self.press_count = 0

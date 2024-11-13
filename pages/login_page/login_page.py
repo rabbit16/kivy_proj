@@ -57,7 +57,7 @@ class LoginWidget(GestureBox):
             MyPopup(title='',content=Label(text='Login Successfully')).open()
             MDApp.get_running_app().login_user = username
             MDApp.get_running_app().is_login = True
-            MDApp.get_running_app().root.current = 'Index'
+            MDApp.get_running_app().root.get_ids().screen_manager.current = 'Index'
         else:
             MyPopup(title='', content=Label(text='Login failed. Please try again!')).open()
     @staticmethod
