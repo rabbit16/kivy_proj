@@ -42,7 +42,7 @@ requirements = kivy,numpy,opencv,pillow,requests,pyOpenSSL,conan,camera4kivy,ges
     materialyoucolor,
     exceptiongroup,
     asyncgui,
-    asynckivy,watchdog
+    asynckivy,watchdog,https://github.com/kivy-garden/graph/archive/master.zip,kivy-garden.matplotlib
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
@@ -55,7 +55,7 @@ requirements = kivy,numpy,opencv,pillow,requests,pyOpenSSL,conan,camera4kivy,ges
 #icon.filename = %(source.dir)s/data/icon.png
 
 # (list) Supported orientations
-# Valid options are: landscape, portrait, portrait-reverse or landscape-reverse
+# Valid options are: landscape, portrait, portrait-revercat  /proc/cpuinfose or landscape-reverse
 orientation = portrait
 
 # (list) List of service to declare
@@ -101,11 +101,11 @@ fullscreen = 1
 # (list) Permissions
 # (See https://python-for-android.readthedocs.io/en/latest/buildoptions/#build-options-1 for all the supported syntaxes and properties)
 #android.permissions = android.permission.INTERNET, (name=android.permission.WRITE_EXTERNAL_STORAGE;maxSdkVersion=18)
-android.permissions = CAMERA, RECORD_AUDIO, WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE, RECORD_AUDIO
+android.permissions = CAMERA, RECORD_AUDIO, WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE, RECORD_AUDIO,ACCESS_BACKGROUND_LOCATION,INTERNET
 # (list) features (adds uses-feature -tags to manifest)
 #android.features = android.hardware.usb.host
 
-# (int) Target Android API, should be as high as possible.
+# (int) Target Android API, should be as high as possible.  29适配android10, 31适配10以上
 android.api = 31
 
 # (int) Minimum API your APK / AAB will support.
@@ -157,7 +157,7 @@ android.private_storage = True
 # (str) Extra xml to write directly inside the <manifest><application> tag of AndroidManifest.xml
 # use that parameter to provide a filename from where to load your custom XML arguments:
 #android.extra_manifest_application_arguments = ./src/android/extra_manifest_application_arguments.xml
-
+cat  /proc/cpuinfo
 # (str) Full name including package path of the Java class that implements Python Service
 # use that parameter to set custom Java class which extends PythonService
 #android.service_class_name = org.kivy.android.PythonService
@@ -214,7 +214,7 @@ android.private_storage = True
 android.enable_androidx = True
 
 # (list) add java compile options
-# this can for example be necessary when importing certain java libraries using the 'android.gradle_dependencies' option
+# this can for example be necessary when importing ccat  /proc/cpuinfoertain java libraries using the 'android.gradle_dependencies' option
 # see https://developer.android.com/studio/write/java8-support for further information
 # android.add_compile_options = "sourceCompatibility = 1.8", "targetCompatibility = 1.8"
 
@@ -286,10 +286,10 @@ android.wakelock = False
 # (bool) Copy library instead of making a libpymodules.so
 #android.copy_libs = 1
 
-# (list) The Android archs to build for, choices: armeabi-v7a, arm64-v8a, x86, x86_64
+# (list) The Android archs to build for, choices: armREQUEST_INSTALL_PACKAGESeabi-v7a, arm64-v8a, x86, x86_64
 # In past, was `android.arch` as we weren't supporting builds for multiple archs at the same time.
 #android.archs = arm64-v8a
-android.archs = arm64-v8a
+android.archs = arm64-v8a,armeabi-v7a
 
 # (int) overrides automatic versionCode computation (used in build.gradle)
 # this is not the same as app version and should only be edited if you know what you're doing

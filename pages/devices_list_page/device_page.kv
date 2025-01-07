@@ -1,0 +1,51 @@
+<SelectableLabelDevice>:
+    orientation: 'horizontal'
+    LabelChinaDevice:
+        text: str(root.id)  # Display ID
+        size_hint_x: 0.1  # 10% for ID
+    LabelChinaDevice:
+        text: root.device_name  # Task description
+        size_hint_x: 0.5  # 50% for description
+    LabelChinaDevice:
+        text: root.device_addr  # Task description
+        size_hint_x: 0.5  # 50% for description
+    LabelChinaDevice:
+        text: root.device_status  # Task description
+        size_hint_x: 0.5  # 50% for description
+<DeviceListPage>:
+    BoxLayout:
+        id: main_box
+        size_hint: 1, 1
+        orientation: "vertical"  # 在这里设置 orientation
+        canvas.before:
+            Color:
+                rgba: (1,1,1,1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+                source: 'static/proj_img/background.jpg'
+        MDBoxLayout:
+            id: header
+            orientation: "horizontal"
+            size_hint: 1, 0.08
+            MDLabel:
+                theme_font_size: "Custom"
+                text: "设备列表"
+                font_size: "15sp"
+                adaptive_height: True
+                padding: "10dp", "20dp", 0, 0
+                theme_font_name: "Custom"
+                font_name: "static/fonts/DroidSansFallback.ttf"
+            MDIconButton:
+                icon: "menu"
+        RVDevice:
+            viewclass: 'SelectableLabelDevice'
+            SelectableRecycleBoxLayout:
+                default_size: None, dp(56)
+                default_size_hint: 1, None
+                size_hint_y: None
+                height: self.minimum_height
+                orientation: 'vertical'
+                multiselect: True
+                touch_multiselect: True
+

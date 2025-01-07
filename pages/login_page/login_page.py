@@ -1,6 +1,3 @@
-import requests
-from kivy.clock import Clock
-from kivy.lang import Builder
 from kivy.uix.label import Label
 from kivy.uix.popup import Popup
 
@@ -13,8 +10,8 @@ from kivymd.app import MDApp
 from kivy.uix.textinput import TextInput
 from kivy.graphics import Color, Rectangle
 
-from settings.settings_proj import HTTP_URL
-from utils.user_widget import MyPopup
+from settings.settings_proj import HTTP_URL, IS_MOBILE
+from utils.user_widget import MyPopup, request_post
 
 
 class CustomTextInput(TextInput):
@@ -44,10 +41,11 @@ class LoginWidget(GestureBox):
         headers = {
             "Cookie": MDApp.get_running_app().sessionid
         }
-        response = requests.post(
+        MDApp.get_running_app().headers = headers
+        response = request_post(
             url=HTTP_URL+"/login/",
-            json={
-                "user": username,
+            json_data={
+                "employee_number": username,
                 "password": password
             },
             headers=headers
@@ -57,7 +55,12 @@ class LoginWidget(GestureBox):
             MyPopup(title='',content=Label(text='Login Successfully')).open()
             MDApp.get_running_app().login_user = username
             MDApp.get_running_app().is_login = True
-            MDApp.get_running_app().root.current = 'Index'
+            if IS_MOBILE:
+                MDApp.get_running_app().root.get_ids().screen_manager.current = 'Task'
+                MDApp.get_running_app().screen_manager = "Task"
+            else:
+                MDApp.get_running_app().root.get_ids().screen_manager.current = 'Index'
+                MDApp.get_running_app().screen_manager = "Index"
         else:
             MyPopup(title='', content=Label(text='Login failed. Please try again!')).open()
     @staticmethod

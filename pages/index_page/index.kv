@@ -1,57 +1,4 @@
 <IndexScreen>:
-    anim_type: 'slide_above_simple'
-    on_left_to_right_line: main_win.toggle_state()
-    id: main_win
-    BoxLayout:
-        id: slide_box
-        orientation: 'vertical'
-        spacing: 20
-        canvas.before:
-            Color:
-                rgba: (1,1,1,1)
-            Rectangle:
-                pos: self.pos
-                size: self.size
-        BoxLayout:
-            orientation: 'vertical'
-            Button:
-                id: head_image_box
-                size_hint: (.2,.2)
-                pos_hint: {'center_x':.5,'center_y':.5}
-#                on_release: root.me_slide_button()
-                background_color: (0,0,0,0)
-                canvas.after:
-                    Color:
-                        rgba: (1,1,1,1)
-                    Ellipse:
-                        size: head_image_box.size[1]/1.8,head_image_box.size[1]/1.8
-                        pos: [self.center_x - head_image_box.size[1]/3.6, self.center_y - head_image_box.size[1]/3.6]
-                        source: 'static/proj_img/c0c.jpg'
-            Label:
-                id: slide_name_label
-                text: 'C0C'
-                color: (0,0,0,1)
-                size_hint_y: .15
-        BoxLayout:
-            orientation: 'horizontal'
-            ImageButton:
-                source:"static/proj_img/review.png"
-            Label:
-                color: (0,0,0,1)
-                markup: True
-                text: '[ref=first ref]登录[/ref]'
-                font_name: "static/fonts/DroidSansFallback.ttf"
-                on_ref_press: root.login_view()
-        BoxLayout:
-            orientation: 'horizontal'
-            ImageButton:
-                source:"static/proj_img/review.png"
-            Label:
-                color: (0,0,0,1)
-                markup: True
-                text: '[ref=first ref]任务管理[/ref]'
-                font_name: "static/fonts/DroidSansFallback.ttf"
-                on_ref_press: root.login_view()
     BoxLayout:
         id: index_page
         orientation: "vertical"  # 在这里设置 orientation
@@ -70,7 +17,7 @@
             pos_hint: {"center_x": 0.5, "top":0}  # 使用 'top' 确保它在顶部
         CameraModule:
             id: camera_self
-            size_hint: 1, .3
+            size_hint: 1, .6
             padding: 10, 15, 10, 5
             spacing: 10
         BoxLayout:
@@ -91,6 +38,7 @@
                         source: 'static/proj_img/background_table.jpg'
                         radius: [20,]
                 RecycleView:
+                    id: table_data_list
                     viewclass: 'LabelChina'
                     data: [{'text': str(i)} for i in table_data.data_items]
                     RecycleGridLayout:

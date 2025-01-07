@@ -5,7 +5,7 @@ import time
 def send_command(command):
     ser.write(command)
     response = ser.read(ser.in_waiting)
-    print(response)
+    # print(response)
     return response
 
 def calculate_weight(data):
@@ -40,7 +40,7 @@ def read_weight():
         # 读取称重数据
         data = send_command(b'\x04\x03\x1A\x00\x00\x0D\x26\x00\x08\x05\x55\x00\x03\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x83\x10')
         weight = calculate_weight(data)
-        print(f"Weight: {weight} g")
+        # print(f"Weight: {weight} g")
         time.sleep(1)
 
 # 设置串口参数（根据实际情况修改）
