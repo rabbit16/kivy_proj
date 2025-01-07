@@ -1,3 +1,6 @@
+import logging
+
+import requests
 from kivy.app import App
 from kivy.graphics import Color, Rectangle
 from kivy.metrics import dp
@@ -27,7 +30,7 @@ class MyPopup(Popup):
         self.pos_hint = {'center_x': 0.5, 'top': 1}  # Center horizontally, top aligned
     def open(self, *args, **kwargs):
         super(MyPopup, self).open(*args, **kwargs)
-        Clock.schedule_once(self.dismiss, 1.5)  # 3 seconds auto dismiss
+        Clock.schedule_once(self.dismiss, 2)  # 3 seconds auto dismiss
 
 class BaseMDNavigationItem(MDNavigationItem):
     icon = StringProperty()
@@ -45,3 +48,19 @@ class BaseScreen(MDScreen):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+
+def request_post(url, json_data, headers=None):
+    try:
+        r = requests.post(url, json=json_data, headers=headers)
+        return r
+    except Exception as e:
+        logging.error(e)
+        return {}
+
+def request_get(url, headers=None):
+    try:
+        r = requests.get(url, headers=headers)
+        return r
+    except Exception as e:
+        logging.error(e)

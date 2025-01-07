@@ -1,3 +1,26 @@
+<SelectableLabel>:
+    orientation: 'horizontal'
+    LabelChina:
+        text: str(root.id)  # Display ID
+        size_hint_x: 0.1  # 10% for ID
+    Image:
+        source: root.image_source  # Path to the image
+        size_hint_x: 0.1  # 20% for image
+        allow_stretch: True
+        fit_mode: "fill"
+    LabelChina:
+        id: label_text
+        text: root.description  # Task description
+        size_hint_x: 0.5  # 50% for description
+    Button:
+        text: 'Click Me'
+        size_hint_x: 0.2  # 20% for button
+        background_color: 1, 1, 1, 1  # 设置默认背景颜色为白色
+        on_press:
+            self.background_color = 0, 1, 0, 1  # 按下时背景颜色变为绿色
+            root.on_button_click()
+        on_release:
+            self.background_color = 1, 1, 1, 1  # 释放时背景颜色变回白色
 <TaskListPage>:
     BoxLayout:
         id: main_box
@@ -26,6 +49,15 @@
 #                    icon: "clock-time-eight"
 #                    type: "small"
             MDSegmentedButtonItem:
+                on_release: root.ids.task_view.update_task()  # 这里应该是调用根目录下更新任务的函数
+                type: "small"
+
+                MDSegmentButtonLabel:
+                    text: "刷新"
+                    type: "small"
+                    theme_font_name: "Custom"
+                    font_name: "static/fonts/DroidSansFallback.ttf"
+            MDSegmentedButtonItem:
 
                 MDSegmentButtonLabel:
                     text: "工单"
@@ -45,26 +77,16 @@
 #                MDSegmentButtonIcon:
 #                    icon: "format-list-numbered"
         MyBoxLayout:
+            id: pic_view
             size: 1, .1
-        MDScrollView:
-            do_scroll_x: False
-            id: mdscroll
-            MDBoxLayout:
-                id: main_scroll
-                orientation: "vertical"
-                adaptive_height: True
-                MDBoxLayout:
-                    id: task_lists
-                    adaptive_height: True
-                    MDLabel:
-                        theme_font_size: "Custom"
-                        text: "任务列表"
-                        font_size: "15sp"
-                        adaptive_height: True
-                        padding: "10dp", "20dp", 0, 0
-                        theme_font_name: "Custom"
-                        font_name: "static/fonts/DroidSansFallback.ttf"
-
-                    MDIconButton:
-                        icon: "menu"
-                        pos_hint: {"center_y": .5}
+        RV:
+            id: task_view
+            viewclass: 'SelectableLabel'
+            SelectableRecycleBoxLayout:
+                default_size: None, dp(56)
+                default_size_hint: 1, None
+                size_hint_y: None
+                height: self.minimum_height
+                orientation: 'vertical'
+                multiselect: True
+                touch_multiselect: True

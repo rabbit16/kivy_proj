@@ -1,0 +1,70 @@
+<TaskListPage>:
+    BoxLayout:
+        id: main_box
+        size_hint: 1, 1
+        orientation: "vertical"  # 在这里设置 orientation
+        canvas.before:
+            Color:
+                rgba: (1,1,1,1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+                source: 'static/proj_img/background.jpg'
+        MDSegmentedButton:
+            adaptive_height: True
+            icon_size: dp(24) if self.width > 300 else dp(18)
+            MDSegmentedButtonItem:
+                on_release: root.open_menu(self)
+                type: "small"
+
+                MDSegmentButtonLabel:
+                    text: "时间"
+                    type: "small"
+                    theme_font_name: "Custom"
+                    font_name: "static/fonts/DroidSansFallback.ttf"
+#                MDSegmentButtonIcon:
+#                    icon: "clock-time-eight"
+#                    type: "small"
+            MDSegmentedButtonItem:
+
+                MDSegmentButtonLabel:
+                    text: "工单"
+                    type: "small"
+                    theme_font_name: "Custom"
+                    font_name: "static/fonts/DroidSansFallback.ttf"
+#                MDSegmentButtonIcon:
+#                    icon: "camcorder"
+
+            MDSegmentedButtonItem:
+#
+                MDSegmentButtonLabel:
+                    text: "全部"
+                    type: "small"
+                    theme_font_name: "Custom"
+                    font_name: "static/fonts/DroidSansFallback.ttf"
+#                MDSegmentButtonIcon:
+#                    icon: "format-list-numbered"
+        MyBoxLayout:
+            size: 1, .1
+        MDScrollView:
+            do_scroll_x: False
+            id: mdscroll
+            MDBoxLayout:
+                id: main_scroll
+                orientation: "vertical"
+                adaptive_height: True
+                MDBoxLayout:
+                    id: task_lists
+                    adaptive_height: True
+                    MDLabel:
+                        theme_font_size: "Custom"
+                        text: "任务列表"
+                        font_size: "15sp"
+                        adaptive_height: True
+                        padding: "10dp", "20dp", 0, 0
+                        theme_font_name: "Custom"
+                        font_name: "static/fonts/DroidSansFallback.ttf"
+
+                    MDIconButton:
+                        icon: "menu"
+                        pos_hint: {"center_y": .5}
